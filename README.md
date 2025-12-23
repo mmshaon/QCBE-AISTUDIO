@@ -1,20 +1,27 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# QCBE-AISTUDIO (monorepo scaffold)
 
-# Run and deploy your AI Studio app
+This repository is a TypeScript monorepo scaffold using pnpm workspaces. It contains three packages:
 
-This contains everything you need to run your app locally.
+- packages/shared — a small TypeScript library (example `greet` function).
+- packages/api — an Express API that imports `@qcbe/shared`.
+- packages/ui — a Vite + React TypeScript app.
 
-View your app in AI Studio: https://ai.studio/apps/drive/1LDOnE14hBegeu038XwdWcgxuocLvgpx3
+Quick start (after files are pushed):
 
-## Run Locally
+1. Install pnpm (if you don't have it): https://pnpm.io/installation
+2. From repo root:
+   - pnpm install
+   - pnpm -w build
+   - cd packages/api && pnpm start        # runs built API
+   - cd packages/ui && pnpm dev          # runs the UI in dev mode
 
-**Prerequisites:**  Node.js
+Useful scripts (run from repo root):
+- pnpm -w build         — build all packages
+- pnpm -w -r build      — same, recursively
+- pnpm -w test          — run tests (if any)
+- pnpm -w lint          — run eslint across workspace
 
-
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+Notes:
+- This scaffold uses TypeScript project references for the `shared` package (composite).
+- The API expects the `shared` package to be built for `node` (tsc -b will produce dist files).
+- The UI uses Vite and can import source TS files from workspace during development.
