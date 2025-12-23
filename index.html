@@ -1,0 +1,261 @@
+
+
+<!DOCTYPE html>
+<html lang="en" class="antialiased">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+    <title>Quantum Cube - Powered by Yusra</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['"Exo 2"', 'sans-serif'],
+              heading: ['Orbitron', 'sans-serif'],
+              mono: ['Rajdhani', 'monospace'],
+            },
+            colors: {
+              quantum: {
+                deep: '#03080C', // Darker void
+                midnight: '#05111A', 
+                void: '#000000',
+                depth: '#091C26'
+              },
+              neon: {
+                green: '#00FF9D',
+                blue: '#00F0FF',
+                pink: '#FF0055',
+                yellow: '#FBFF00',
+                purple: '#BC13FE',
+                cyan: '#00D9F5',
+                red: '#FF2A2A',
+                orange: '#FF7B00'
+              },
+              glass: {
+                light: 'rgba(255, 255, 255, 0.03)',
+                medium: 'rgba(255, 255, 255, 0.05)',
+                strong: 'rgba(255, 255, 255, 0.08)',
+                border: 'rgba(255, 255, 255, 0.08)'
+              }
+            },
+            animation: {
+              'float': 'hydroFloat 8s ease-in-out infinite',
+              'float-delayed': 'hydroFloat 9s ease-in-out 4s infinite',
+              'electric-flow': 'electricFlow 3s linear infinite',
+              'electric-pulse': 'electricPulse 1.5s ease-in-out infinite', // Faster pulse
+              'pulse-fast': 'pulse 1.2s cubic-bezier(0.4, 0, 0.6, 1) infinite', // Faster pulse
+              'icon-breathe': 'iconBreathe 3s ease-in-out infinite', // Faster breathe
+              'ripple': 'rippleEffect 0.8s cubic-bezier(0.4, 0, 0.2, 1)', // Longer ripple effect
+              'spin-slow': 'spin 12s linear infinite',
+              'spin-reverse': 'spin 15s linear infinite reverse',
+              'energy-surge': 'energySurge 1.2s ease-in-out infinite', // Faster energy surge
+              'glow-flash': 'glowFlash 2s infinite alternate',
+              'page-enter': 'fadeInUp 0.4s ease-out forwards',
+              'scan': 'scanLine 3s ease-in-out infinite alternate',
+              'spark-spin': 'sparkSpin 1.8s linear infinite', // Faster spark spin
+              'waterRipple': 'waterRipple 0.6s ease-in-out infinite', // Slightly longer ripple
+              'border-pulse': 'borderPulse 1.8s ease-in-out infinite', // Faster border pulse
+              'pulse-strong': 'pulseStrong 2s cubic-bezier(0.4, 0, 0.6, 1) infinite', // New stronger pulse
+              'audio-wave': 'audioWave 0.8s ease-in-out infinite'
+            },
+            keyframes: {
+              hydroFloat: {
+                '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
+                '25%': { transform: 'translateY(-8px) rotate(0.5deg)' }, // More pronounced float
+                '50%': { transform: 'translateY(-4px) rotate(-0.5deg)' },
+                '75%': { transform: 'translateY(-7px) rotate(0.2deg)' }
+              },
+              electricFlow: {
+                '0%': { transform: 'translate(-50%, -50%) rotate(0deg)' },
+                '100%': { transform: 'translate(-50%, -50%) rotate(360deg)' }
+              },
+              electricPulse: {
+                '0%, 100%': { opacity: '1', filter: 'brightness(1.2)' }, // Brighter pulse
+                '50%': { opacity: '0.7', filter: 'brightness(1.8) saturate(1.5)' } // More intense
+              },
+              iconBreathe: {
+                '0%, 100%': { filter: 'brightness(1) drop-shadow(0 0 8px rgba(255,255,255,0.4))', transform: 'scale(1)' }, // Stronger glow
+                '50%': { filter: 'brightness(1.8) drop-shadow(0 0 20px rgba(255,255,255,1))', transform: 'scale(1.08)' } // More intense and subtle scale
+              },
+              rippleEffect: {
+                '0%': { transform: 'scale(0)', opacity: '0.9', filter: 'blur(0px)' }, // Start brighter
+                '100%': { transform: 'scale(5)', opacity: '0', filter: 'blur(12px)' } // Larger and blurrier
+              },
+              energySurge: {
+                '0%, 100%': { strokeOpacity: '0.7', filter: 'drop-shadow(0 0 4px currentColor)' }, // Stronger base glow
+                '50%': { strokeOpacity: '1', filter: 'drop-shadow(0 0 20px currentColor) brightness(1.5) saturate(1.5)' } // More intense
+              },
+              glowFlash: {
+                '0%': { boxShadow: '0 0 8px currentColor' },
+                '100%': { boxShadow: '0 0 25px currentColor, 0 0 50px currentColor' } // Stronger flash
+              },
+              fadeInUp: {
+                '0%': { opacity: '0', transform: 'translateY(15px)' }, // More noticeable slide in
+                '100%': { opacity: '1', transform: 'translateY(0)' }
+              },
+              scanLine: {
+                '0%': { transform: 'translateY(-100%)' },
+                '100%': { transform: 'translateY(100%)' }
+              },
+              sparkSpin: {
+                '0%': { transform: 'rotate(0deg)' },
+                '100%': { transform: 'rotate(360deg)' }
+              },
+              waterRipple: {
+                '0%, 100%': { transform: 'scaleY(0.4) translateY(0)' },
+                '50%': { transform: 'scaleY(1.1) translateY(-15%)' } // More exaggerated ripple
+              },
+              borderPulse: {
+                '0%, 100%': { boxShadow: '0 0 8px currentColor, inset 0 0 8px currentColor' }, // Stronger pulse
+                '50%': { boxShadow: '0 0 20px currentColor, inset 0 0 20px currentColor' } // More intense
+              },
+              pulseStrong: { // New stronger pulse for critical elements
+                '0%, 100%': { opacity: '1', transform: 'scale(1)' },
+                '50%': { opacity: '0.8', transform: 'scale(1.05)' }
+              },
+              audioWave: { // New audio wave animation for visualizers
+                '0%, 100%': { height: '30%' },
+                '25%': { height: '70%' },
+                '50%': { height: '50%' },
+                '75%': { height: '90%' }
+              } 
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      body {
+        background: #020608;
+        background-image: 
+          radial-gradient(circle at 50% 0%, #0B2532 0%, transparent 60%),
+          radial-gradient(circle at 80% 80%, rgba(188, 19, 254, 0.08) 0%, transparent 40%); /* Slightly stronger initial gradient */
+        color: rgba(255, 255, 255, 0.98); /* Brighter base text */
+        overflow-x: hidden;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      
+      /* === SCROLLBAR === */
+      ::-webkit-scrollbar { width: 8px; height: 8px; } /* Thicker scrollbar */
+      ::-webkit-scrollbar-track { background: #03080C; }
+      ::-webkit-scrollbar-thumb { 
+        background: rgba(0, 240, 255, 0.3); /* Brighter thumb */
+        border-radius: 4px; /* Smoother radius */
+        border: 1px solid rgba(0, 240, 255, 0.2);
+      }
+      ::-webkit-scrollbar-thumb:hover { 
+        background: rgba(0, 240, 255, 0.7); /* Even brighter on hover */
+        box-shadow: 0 0 15px rgba(0, 240, 255, 0.5); /* Stronger glow */
+      }
+
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      
+      .custom-scrollbar::-webkit-scrollbar { width: 6px; } /* Slightly thicker */
+      .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.15); border-radius: 4px; } /* More visible */
+      .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.4); } /* Brighter on hover */
+
+      /* === ELECTRIC BORDER ENGINE v3.0 (200% Improvement) === */
+      .electric-border-container {
+        position: relative;
+        background: rgba(5, 17, 26, 0.75); /* Slightly less transparent base */
+        border-radius: 18px; /* Larger, smoother radius */
+        overflow: hidden;
+        isolation: isolate;
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+        border: 1px solid rgba(255,255,255,0.05); /* Subtle default border */
+      }
+      
+      /* The Spinning High-Voltage Beam */
+      .electric-border-container::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 180%; /* Wider beam */
+        height: 180%; /* Taller beam */
+        background: conic-gradient(
+          from 0deg, 
+          transparent 0deg, 
+          transparent 260deg, /* Broader transparent section */
+          var(--neon-color, #00F0FF) 310deg, /* Start neon earlier, wider arc */
+          var(--neon-color, #00F0FF) 360deg
+        );
+        animation: electricFlow 3.5s linear infinite; /* Slightly faster flow */
+        transform: translate(-50%, -50%);
+        z-index: -2;
+        opacity: 0.7; /* More visible base glow */
+        filter: brightness(1.1); /* Slightly brighter base */
+      }
+      
+      /* Inner Mask (Card Body) */
+      .electric-border-container::after {
+        content: '';
+        position: absolute;
+        inset: 2px; /* Thicker, sharper border effect */
+        background: var(--bg-color, rgba(5, 17, 26, 0.98)); /* Almost opaque inner background */
+        border-radius: 16px; /* Matches container minus inset */
+        z-index: -1;
+      }
+
+      /* Hover States */
+      .electric-border-container:hover {
+        box-shadow: 0 0 35px var(--neon-color, rgba(0, 240, 255, 0.4)), 0 0 60px var(--neon-color, rgba(0, 240, 255, 0.2)); /* Much stronger glow */
+        transform: translateY(-4px) scale(1.01); /* More pronounced lift and scale */
+        border-color: var(--neon-color, #00F0FF); /* Border takes neon color */
+      }
+      .electric-border-container:hover::before {
+        animation-duration: 1.8s; /* Much faster animation on hover */
+        opacity: 1; /* Fully opaque glow */
+        filter: brightness(1.8) saturate(1.5); /* Super bright and saturated */
+      }
+      
+      /* Utility for non-electric buttons to still feel substantial */
+      .electric-border-container-none {
+         border: 1px solid rgba(255,255,255,0.15); /* More visible */
+      }
+
+      /* Text Glow for important titles (200% Improvement) */
+      .text-glow {
+        text-shadow: 0 0 10px rgba(0, 240, 255, 0.8), 0 0 20px rgba(0, 240, 255, 0.6), 0 0 40px rgba(0, 240, 255, 0.3);
+      }
+      .neon-glow-blue {
+        text-shadow: 0 0 12px #00F0FF, 0 0 25px #00D9F5, 0 0 50px rgba(0, 240, 255, 0.4);
+      }
+      .neon-glow-purple {
+        text-shadow: 0 0 12px #BC13FE, 0 0 25px #A855F7, 0 0 50px rgba(188, 19, 254, 0.4);
+      }
+      .neon-glow-green {
+        text-shadow: 0 0 12px #00FF9D, 0 0 25px #00E68A, 0 0 50px rgba(0, 255, 157, 0.4);
+      }
+      .neon-glow-pink {
+        text-shadow: 0 0 12px #FF0055, 0 0 25px #FF2A2A, 0 0 50px rgba(255, 0, 85, 0.4);
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "react": "https://esm.sh/react@^19.2.3",
+    "@google/genai": "https://esm.sh/@google/genai@^1.34.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "lucide-react": "https://esm.sh/lucide-react@^0.562.0",
+    "recharts": "https://esm.sh/recharts@^3.6.0",
+    "rxjs": "https://esm.sh/rxjs@^7.8.2"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>

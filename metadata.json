@@ -1,0 +1,8 @@
+{
+  "name": "Quantum Cube Business Engine",
+  "description": "AI-powered business management platform featuring Yusra, the Virtual CEO. Cyberpunk design, voice-first interaction.",
+  "requestFramePermissions": [
+    "microphone",
+    "camera"
+  ]
+}
